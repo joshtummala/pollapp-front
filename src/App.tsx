@@ -1,17 +1,23 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SignUp from './screens/SignUp';
-import SignIn from './screens/SignIn';
+import React from "react";
+import { Provider } from "react-redux";
+import { BrowserRouter, Route } from "react-router-dom";
+import "./App.css";
+import Explore from "./components/Explore";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
+import store from "./reducers/store";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Route path="/privacy" exact component={PrivacyPolicy} />
+        <Route path="/signin" exact component={SignIn} />
+        <Route path="/signup" exact component={SignUp} />
+        <Route path={["/", "/home", "/explore"]} exact component={Explore} />
+      </BrowserRouter>
+    </Provider>
   );
 }
 
