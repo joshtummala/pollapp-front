@@ -6,9 +6,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/privacy">
-        <PrivacyPolicy />
-      </Route>
+      <Route path="/privacy" exact component={PrivacyPolicy}/>
     </BrowserRouter>
   );
 }
