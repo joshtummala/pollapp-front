@@ -11,6 +11,7 @@ import store from "./reducers/store";
 import Search from "./components/search";
 import EditProfile from "./components/EditProfile";
 import Admin from "./components/Admin";
+import GroupDetails from "./components/Group/groupDetails";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path={["/search"]} exact component={Search} />
         <Route path={["/editprofile"]} exact component={EditProfile} />
         <Route path={["/admin"]} exact component={Admin} />
+        <Route path={[`/group/:id`]} exact component={GroupDetails}/>
       </BrowserRouter>
     </Provider>
   );

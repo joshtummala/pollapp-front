@@ -2,9 +2,10 @@ import React from "react";
 
 type QuestionItemType = {
     question: string,
+    id: string
 }
 
-const QuestionItem = ({ question }: QuestionItemType) => {
+const QuestionItem = ({ question, id }: QuestionItemType) => {
     return (
 
         <div className="card mb-4">
