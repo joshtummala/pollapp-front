@@ -8,8 +8,8 @@ type GroupGridType = {
 const GroupGrid = ({ groups }: GroupGridType) => {
   return (
     <div className="row row-cols-1 row-cols-md-2 g-4">
-      {groups.map((group) => (
-        <GroupItem title={group.title} topic={group.topic} id={group._id} members={group.members} />
+      {groups.map((group, index) => (
+        <GroupItem key={index} title={group.title} topic={group.topic} id={group._id} members={group.members} />
       ))}
     </div>
   );

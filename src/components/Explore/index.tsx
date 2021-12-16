@@ -4,11 +4,18 @@ import { Link } from "react-router-dom";
 import GroupGrid from "./group-grid";
 import UserInfo from "./user-info";
 import { searchGroups } from "../../services/groupService";
+import Spinner from "../decorative/spinner";
 
 const Explore = () => {
   const state = useSelector((state: any) => state.userReducer);
   const [groups, setGroups] = useState([]);
-  searchGroups().then((groups) => setGroups(groups));
+  const [isLoading, setIsLoading] = useState(true)
+
+  searchGroups().then((groups) => {
+    setIsLoading(true);
+    setGroups(groups)
+  }).finally(() => setIsLoading(false));
+
   return (
     <div className="container mt-5">
       <div className="row">
@@ -35,7 +42,10 @@ const Explore = () => {
               </div>
             )}
           </div>
-          <GroupGrid groups={groups} />
+          {isLoading ?
+            <Spinner /> :
+            <GroupGrid groups={groups} />
+          }
         </div>
       </div>
     </div>

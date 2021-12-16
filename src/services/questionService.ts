@@ -7,9 +7,8 @@ export const searchQuestions = async (
   owner?: string
 ) => {
   const response = await axios.get(
-    `${API_URL}/questions/search?${(question && "question=" + question) || ""}${
-      (group && "group=" + group) || ""
-    }${(owner && "owner=" + owner) || ""}`,
+    `${API_URL}/questions/search?${(question && "question=" + question) || ""}${(group && "&group=" + group) || ""
+    }${(owner && "&owner=" + owner) || ""}`,
     {
       withCredentials: true,
     }
