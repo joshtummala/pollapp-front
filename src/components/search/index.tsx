@@ -81,8 +81,8 @@ const Search = () => {
                     {
                         results.length !== 0 && searchText ? (<h3>{`${results.length} results`}</h3>) : (<h3>ready? start a search</h3>)
                     }
-                    {results.length !== 0 && filter === "group" && <GroupGrid />}
-                    {results.length !== 0 && filter === "question" && <QuestionList />}
+                    {results.length !== 0 && filter === "group" && <GroupGrid groups={results} />}
+                    {results.length !== 0 && filter === "question" && <QuestionList questions={results} />}
 
                 </div>
             </div>
