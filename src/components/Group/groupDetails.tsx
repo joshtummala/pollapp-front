@@ -8,17 +8,16 @@ import QuestionList from "../Questions/questionList";
 
 const GroupDetails = () => {
   const user = useSelector((state: any) => state.userReducer);
-  const { id } = useParams<{ id?: string }>();
+  const { id } = useParams<{ id: string }>();
   const [group, setGroup] = useState({
     title: "",
     topic: "",
     members: [],
     _id: "",
   });
-  id &&
-    getGroup(id).then((group) => {
-      setGroup(group);
-    });
+  getGroup(id).then((group) => {
+    setGroup(group);
+  });
   const [questions, setQuestions] = useState([]);
   const [isMember, setIsMember] = useState(
     group.members && user._id in group.members
@@ -28,20 +27,23 @@ const GroupDetails = () => {
     setIsMember(group.members && user._id in group.members);
   }, [group, user]);
   const addGroup = () => {
-    id &&
-      joinGroup(id, user._id).then(() => {
-        setIsMember(true);
-      });
+    joinGroup(id, user._id).then(() => {
+      setIsMember(true);
+    });
   };
   const removeGroup = () => {
-    id &&
-      leaveGroup(id, user._id).then(() => {
-        setIsMember(false);
-      });
+    leaveGroup(id, user._id).then(() => {
+      setIsMember(false);
+    });
   };
   return (
     <div className="container mt-5">
-      <p><Link to="/home" className="link-primary">Home</Link> / Group</p>
+      <p>
+        <Link to="/home" className="link-primary text-decoration-none">
+          Home
+        </Link>{" "}
+        / Group
+      </p>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>{group.title}</h1>
         {user.username && (
