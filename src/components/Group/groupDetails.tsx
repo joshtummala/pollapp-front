@@ -44,6 +44,7 @@ const GroupDetails = () => {
       setIsMember(false);
     });
   };
+
   return (
     <div className="container mt-5">
       <p>
