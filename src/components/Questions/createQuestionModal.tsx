@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { createGroup } from "../../services/groupService";
+import { useState } from "react";
 import { createQuestion } from "../../services/questionService";
 
 type CreateQuestionModalType = {
