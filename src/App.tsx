@@ -12,6 +12,7 @@ import Search from "./components/search";
 import EditProfile from "./components/EditProfile";
 import Admin from "./components/Admin";
 import GroupDetails from "./components/Group/groupDetails";
+import QuestionDetails from "./components/Questions/questionDetails";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path={["/editprofile"]} exact component={EditProfile} />
         <Route path={["/admin"]} exact component={Admin} />
         <Route path={[`/group/:id`]} exact component={GroupDetails}/>
+        <Route path={[`/question/:id`]} exact component={QuestionDetails}/>
       </BrowserRouter>
     </Provider>
   );
