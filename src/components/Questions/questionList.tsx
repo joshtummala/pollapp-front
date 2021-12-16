@@ -2,16 +2,13 @@ import React from "react";
 import QuestionItem from "./questionItem";
 
 type QuestionListType = {
-
+  questions: {question: string, _id: string}[]
 }
 // TODO add a param for the array of questions
-const QuestionList = ({ }: QuestionListType) => {
+const QuestionList = ({ questions}: QuestionListType) => {
     return (
         <div className="row row-cols-1">
-            <QuestionItem question="text" />
-            <QuestionItem question="text" />
-            <QuestionItem question="text" />
-            <QuestionItem question="text" />
+          {questions.map(question => <QuestionItem question={question.question} id={question._id} />)}
         </div>
     )
 }
