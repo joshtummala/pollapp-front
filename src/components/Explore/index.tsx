@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import GroupGrid from "./group-grid";
@@ -13,10 +13,13 @@ const Explore = () => {
   const [groups, setGroups] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
 
-  searchGroups().then((groups) => {
+  useEffect(() => {
     setIsLoading(true);
-    setGroups(groups)
-  }).finally(() => setIsLoading(false));
+    searchGroups().then((groups) => {
+      setGroups(groups)
+    }).finally(() => setIsLoading(false));
+  }, [])
+
 
   return (
     <div className="container mt-5">
