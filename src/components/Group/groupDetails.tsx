@@ -16,22 +16,29 @@ const GroupDetails = () => {
     members: [],
     _id: "",
   });
-  getGroup(id).then((group) => {
-    setGroup(group);
-  });
+
+  useEffect(() => {
+    getGroup(id).then((group) => {
+      setGroup(group);
+    });
+  }, [])
+
   const [questions, setQuestions] = useState([]);
   const [isMember, setIsMember] = useState(
     group.members && user._id in group.members
   );
+
   useEffect(() => {
     searchQuestions("", group._id).then((questions) => setQuestions(questions));
     setIsMember(group.members && user._id in group.members);
   }, [group, user]);
+
   const addGroup = () => {
     joinGroup(id, user._id).then(() => {
       setIsMember(true);
     });
   };
+
   const removeGroup = () => {
     leaveGroup(id, user._id).then(() => {
       setIsMember(false);
