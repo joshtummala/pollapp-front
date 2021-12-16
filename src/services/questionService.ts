@@ -1,3 +1,4 @@
+import axios from "axios";
 import { API_URL } from "../consts";
 
 export const searchQuestions = async (
@@ -5,44 +6,35 @@ export const searchQuestions = async (
   group?: string,
   owner?: string
 ) => {
-  const response = await fetch(
+  const response = await axios.get(
     `${API_URL}/questions/search?${(question && "question=" + question) || ""}${
       (group && "group=" + group) || ""
     }${(owner && "owner=" + owner) || ""}`,
     {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "content-type": "application/json",
-      },
+      withCredentials: true,
     }
   );
-  return await response.json();
+  return response.data;
 };
 
 export const getQuestion = async (questionId: string) => {
-  const response = await fetch(`${API_URL}/question/${questionId}`, {
-    method: "GET",
-    credentials: "include",
-    headers: {
-      "content-type": "application/json",
-    },
+  const response = await axios.get(`${API_URL}/question/${questionId}`, {
+    withCredentials: true,
   });
-  return await response.json();
+  return response.data;
 };
 
 export const respondToQuestion = async (questionId: string, option: number) => {
-  const response = await fetch(`${API_URL}/question/${questionId}`, {
-    method: "PUT",
-    credentials: "include",
-    body: JSON.stringify({
+  const response = await axios.put(
+    `${API_URL}/question/${questionId}`,
+    {
       response: option,
-    }),
-    headers: {
-      "content-type": "application/json",
     },
-  });
-  return await response.json();
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
 };
 
 export const createQuestion = async (question: {
@@ -50,24 +42,15 @@ export const createQuestion = async (question: {
   question: string;
   options: string[];
 }) => {
-  const response = await fetch(`${API_URL}/question`, {
-    method: "POST",
-    credentials: "include",
-    body: JSON.stringify(question),
-    headers: {
-      "content-type": "application/json",
-    },
+  const response = await axios.post(`${API_URL}/question`, question, {
+    withCredentials: true,
   });
-  return await response.json();
+  return response.data;
 };
 
 export const deleteQuestion = async (questionId: string) => {
-  const response = await fetch(`${API_URL}/question/${questionId}`, {
-    method: "DELETE",
-    credentials: "include",
-    headers: {
-      "content-type": "application/json",
-    },
+  const response = await axios.delete(`${API_URL}/question/${questionId}`, {
+    withCredentials: true,
   });
-  return await response.json();
+  return response.data;
 };

@@ -1,78 +1,58 @@
+import axios from "axios";
 import { API_URL } from "../consts";
 
 export const searchGroups = async (title?: string, topic?: string) => {
-  const response = await fetch(
-    `${API_URL}/groups/search?${(title && "title=" + title) || ""}${(topic && "topic=" + topic) || ""
-    }`,
-    {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "content-type": "application/json",
-      },
-    }
+  const response = await axios.get(
+    `${API_URL}/groups/search?${(title && "title=" + title) || ""}${
+      (topic && "topic=" + topic) || ""
+    }`
   );
-  return await response.json();
+  return response.data;
 };
 
 export const getGroup = async (groupId: string) => {
-  const response = await fetch(`${API_URL}/group/${groupId}`, {
-    method: "GET",
-    credentials: "include",
-    headers: {
-      "content-type": "application/json",
-    },
+  const response = await axios.get(`${API_URL}/group/${groupId}`, {
+    withCredentials: true,
   });
-  return await response.json();
+  return response.data;
 };
 
 export const createGroup = async (group: { title: string; topic: string }) => {
-  const response = await fetch(`${API_URL}/group`, {
-    method: "POST",
-    body: JSON.stringify(group),
-    credentials: "include",
-    headers: {
-      "content-type": "application/json",
-    },
+  const response = await axios.post(`${API_URL}/group`, group, {
+    withCredentials: true,
   });
-  return await response.json();
+  return response.data;
 };
 
 export const joinGroup = async (groupId: string, userId: string) => {
-  const response = await fetch(`${API_URL}/group/${groupId}`, {
-    method: "PUT",
-    body: JSON.stringify({
+  const response = await axios.post(
+    `${API_URL}/group/${groupId}`,
+    {
       add_members: [userId],
-    }),
-    credentials: "include",
-    headers: {
-      "content-type": "application/json",
     },
-  });
-  return await response.json();
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
 };
 
 export const leaveGroup = async (groupId: string, userId: string) => {
-  const response = await fetch(`${API_URL}/group/${groupId}`, {
-    method: "PUT",
-    body: JSON.stringify({
+  const response = await axios.put(
+    `${API_URL}/group/${groupId}`,
+    {
       remove_members: [userId],
-    }),
-    credentials: "include",
-    headers: {
-      "content-type": "application/json",
     },
-  });
-  return await response.json();
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
 };
 
 export const deleteGroup = async (groupId: string) => {
-  const response = await fetch(`${API_URL}/group/${groupId}`, {
-    method: "DELETE",
-    credentials: "include",
-    headers: {
-      "content-type": "application/json",
-    },
+  const response = await axios.delete(`${API_URL}/group/${groupId}`, {
+    withCredentials: true,
   });
-  return await response.json();
+  return response.data;
 };

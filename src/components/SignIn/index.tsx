@@ -78,11 +78,10 @@ const SignIn = () => {
               </Link>
             </p>
           </form>
-
         </div>
         <LandingPageRightColumn />
       </div>
-    </div >
+    </div>
   );
 };
 
