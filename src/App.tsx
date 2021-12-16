@@ -26,8 +26,8 @@ function App() {
         <Route path={["/search"]} exact component={Search} />
         <Route path={["/editprofile"]} exact component={EditProfile} />
         <Route path={["/admin"]} exact component={Admin} />
-        <Route path={[`/group/:id`]} exact component={GroupDetails}/>
-        <Route path={[`/question/:id`]} exact component={QuestionDetails}/>
+        <Route path={["/group/:id"]} exact component={GroupDetails}/>
+        <Route path={["/question/:id"]} exact component={QuestionDetails}/>
       </BrowserRouter>
     </Provider>
   );
