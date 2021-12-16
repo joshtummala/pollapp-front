@@ -63,7 +63,7 @@ const GroupDetails = () => {
                 add group
               </button>
             )}
-            <a className="btn btn-outline-primary rounded-pill" href="#">
+            <a className="btn btn-outline-primary rounded-pill" href="/questions">
               ask question
             </a>
           </div>

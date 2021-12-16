@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import GroupGrid from "./group-grid";
 import UserInfo from "./user-info";
-import { Route } from "react-router-dom";
-import QuestionList from "../Questions/questionList";
 import { searchGroups } from "../../services/groupService";
 import Spinner from "../decorative/spinner";
 
