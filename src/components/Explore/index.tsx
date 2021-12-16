@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import GroupGrid from "./group-grid";
 import UserInfo from "./user-info";
+import { Route } from "react-router-dom";
+import QuestionList from "../Questions/questionList";
 
 const Explore = () => {
 
@@ -13,7 +15,7 @@ const Explore = () => {
             <div className="row">
                 {state.username &&
                     (<div className="col-4">
-                        <UserInfo username={state.username} />
+                        <UserInfo username={state.username} selection="groups" />
                     </div>)
                 }
                 <div className="col-8">
@@ -25,6 +27,7 @@ const Explore = () => {
                         </div>)}
                     </div>
                     <GroupGrid />
+
                 </div>
             </div>
 

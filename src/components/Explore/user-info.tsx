@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import CreateGroupModal from "../Group/createGroupModal";
 
 type UserInfoType = {
-    username: string
+    username: string,
+    selection: "groups" | "questions" | "search" | "edit",
 }
 
-const UserInfo = ({ username }: UserInfoType) => {
+const UserInfo = ({ username, selection }: UserInfoType) => {
 
     return (
         <div className="card bg-light">
@@ -16,12 +17,12 @@ const UserInfo = ({ username }: UserInfoType) => {
             </div>
             <h2 className="m-3 mb-4">{username}</h2>
             <div className="list-group list-group-flush bg-light">
-                <Link to="/" className="list-group-item list-group-item-action fw-bold active" aria-current="true">
+                <Link to="/home" className={`list-group-item list-group-item-action fw-bold ${selection === "groups" ? "active" : ""}`} aria-current="true">
                     groups
                 </Link>
-                <Link to="/questions" className="list-group-item list-group-item-action fw-bold">questions</Link>
-                <Link to="/search" className="list-group-item list-group-item-action fw-bold">search</Link>
-                <Link to="#" className="list-group-item list-group-item-action fw-bold">edit profile</Link>
+                <Link to="/questions" className={`list-group-item list-group-item-action fw-bold ${selection === "questions" ? "active" : ""}`}>questions</Link>
+                <Link to="/search" className={`list-group-item list-group-item-action fw-bold ${selection === "search" ? "active" : ""}`}>search</Link>
+                <Link to="/editprofile" className={`list-group-item list-group-item-action fw-bold ${selection === "edit" ? "active" : ""}`}>edit profile</Link>
             </div>
             <button className="btn btn-info w-75 m-3 fw-bold" data-bs-toggle="modal" data-bs-target="#staticBackdrop">create group</button>
             <CreateGroupModal />
