@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { getGroup, joinGroup, leaveGroup } from "../../services/groupService";
 import { searchQuestions } from "../../services/questionService";
+import CreateQuestionModal from "../Questions/createQuestionModal";
 import QuestionList from "../Questions/questionList";
 
 const GroupDetails = () => {
@@ -63,9 +64,10 @@ const GroupDetails = () => {
                 add group
               </button>
             )}
-            <a className="btn btn-outline-primary rounded-pill" href="/questions">
+            <button className="btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#staticCreateQuestion">
               ask question
-            </a>
+            </button>
+            <CreateQuestionModal group_id={group._id} />
           </div>
         )}
       </div>
