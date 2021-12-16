@@ -50,3 +50,17 @@ export const logout = (dispatch: any) => {
       });
     });
 };
+
+export const getUsers = async () => {
+  const response = await axios.get(`${API_URL}/users`, {
+    withCredentials: true,
+  });
+  return response.data;
+};
+
+export const deleteUser = async (userId: string) => {
+  const response = await axios.delete(`${API_URL}/user/${userId}`, {
+    withCredentials: true,
+  });
+  return response.data;
+};

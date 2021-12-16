@@ -10,6 +10,7 @@ import SignUp from "./components/SignUp";
 import store from "./reducers/store";
 import Search from "./components/search";
 import EditProfile from "./components/EditProfile";
+import Admin from "./components/Admin";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path={["/questions"]} exact component={QuestionsUser} />
         <Route path={["/search"]} exact component={Search} />
         <Route path={["/editprofile"]} exact component={EditProfile} />
+        <Route path={["/admin"]} exact component={Admin} />
       </BrowserRouter>
     </Provider>
   );

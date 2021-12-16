@@ -12,7 +12,7 @@ const Search = () => {
             <div className="row">
                 {state.username &&
                     (<div className="col-4">
-                        <UserInfo username={state.username} selection="search" />
+                        <UserInfo username={state.username} selection="search" role={state.role}/>
                     </div>)
                 }
                 <div className="col-8">

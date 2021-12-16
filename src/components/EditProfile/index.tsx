@@ -12,7 +12,7 @@ const EditProfile = () => {
             <div className="row">
                 {state.username &&
                     (<div className="col-4">
-                        <UserInfo username={state.username} selection="edit" />
+                        <UserInfo username={state.username} selection="edit" role={state.role}/>
                     </div>)
                 }
                 <div className="col-8">

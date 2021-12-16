@@ -15,7 +15,7 @@ const Explore = () => {
             <div className="row">
                 {state.username &&
                     (<div className="col-4">
-                        <UserInfo username={state.username} selection="groups" />
+                        <UserInfo username={state.username} selection="groups" role={state.role}/>
                     </div>)
                 }
                 <div className="col-8">

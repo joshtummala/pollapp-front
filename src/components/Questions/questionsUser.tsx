@@ -12,7 +12,7 @@ const QuestionsUser = () => {
             <div className="row">
                 {state.username &&
                     (<div className="col-4">
-                        <UserInfo username={state.username} selection="questions" />
+                        <UserInfo username={state.username} selection="questions" role={state.role}/>
                     </div>)
                 }
                 <div className="col-8">

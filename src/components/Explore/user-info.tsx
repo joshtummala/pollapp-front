@@ -5,10 +5,11 @@ import CreateGroupModal from "../Group/createGroupModal";
 
 type UserInfoType = {
     username: string,
-    selection: "groups" | "questions" | "search" | "edit",
+    selection: "groups" | "questions" | "search" | "edit" | "admin",
+    role: string
 }
 
-const UserInfo = ({ username, selection }: UserInfoType) => {
+const UserInfo = ({ username, selection, role }: UserInfoType) => {
 
     return (
         <div className="card bg-light">
@@ -23,6 +24,7 @@ const UserInfo = ({ username, selection }: UserInfoType) => {
                 <Link to="/questions" className={`list-group-item list-group-item-action fw-bold ${selection === "questions" ? "active" : ""}`}>questions</Link>
                 <Link to="/search" className={`list-group-item list-group-item-action fw-bold ${selection === "search" ? "active" : ""}`}>search</Link>
                 <Link to="/editprofile" className={`list-group-item list-group-item-action fw-bold ${selection === "edit" ? "active" : ""}`}>edit profile</Link>
+                {role === "ADMIN" && <Link to="/admin" className={`list-group-item list-group-item-action fw-bold ${selection === "admin" ? "active" : ""}`}>admin</Link> }
             </div>
             <button className="btn btn-info w-75 m-3 fw-bold" data-bs-toggle="modal" data-bs-target="#staticBackdrop">create group</button>
             <CreateGroupModal />
