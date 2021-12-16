@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { BrowserRouter, Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import "./App.css";
 import Explore from "./components/Explore";
 import QuestionsUser from "./components/Questions/questionsUser";
@@ -17,7 +17,7 @@ import QuestionDetails from "./components/Questions/questionDetails";
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <Route path="/privacy" exact component={PrivacyPolicy} />
         <Route path="/signin" exact component={SignIn} />
         <Route path="/signup" exact component={SignUp} />
@@ -28,7 +28,7 @@ function App() {
         <Route path={["/admin"]} exact component={Admin} />
         <Route path={["/group/:id"]} exact component={GroupDetails}/>
         <Route path={["/question/:id"]} exact component={QuestionDetails}/>
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   );
 }
