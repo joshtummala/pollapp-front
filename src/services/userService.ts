@@ -64,3 +64,20 @@ export const deleteUser = async (userId: string) => {
   });
   return response.data;
 };
+
+export const updateUser = async (
+  userId: string,
+  user: { username?: string; email?: string }
+) => {
+  const response = await axios.put(`${API_URL}/user/${userId}`, user, {
+    withCredentials: true,
+  });
+  return response.data;
+};
+
+export const getUser = async (userId: string) => {
+  const response = await axios.get(`${API_URL}/user/${userId}`, {
+    withCredentials: true,
+  });
+  return response.data;
+};
