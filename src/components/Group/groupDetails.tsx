@@ -72,7 +72,11 @@ const GroupDetails = () => {
                 add group
               </button>
             )}
-            <button className="btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#staticCreateQuestion">
+            <button
+              className="btn btn-outline-primary rounded-pill"
+              data-bs-toggle="modal"
+              data-bs-target="#staticCreateQuestion"
+            >
               ask question
             </button>
             <CreateQuestionModal group_id={group._id} />
