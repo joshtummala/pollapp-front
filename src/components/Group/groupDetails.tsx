@@ -22,7 +22,7 @@ const GroupDetails = () => {
       setGroup(group);
     });
     searchQuestions("", group._id).then((questions) => setQuestions(questions));
-  }, [])
+  }, [group._id, id])
 
   const [questions, setQuestions] = useState([]);
   const [isMember, setIsMember] = useState(
