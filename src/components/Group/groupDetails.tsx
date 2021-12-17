@@ -18,17 +18,20 @@ const GroupDetails = () => {
     _id: "",
   });
 
+  const [questions, setQuestions] = useState([]);
+  const [isMember, setIsMember] = useState(
+    group.members && state._id in group.members
+  );
+  const addQuestionReducer = useSelector(
+    (state: any) => state.addQuestionReducer
+  );
+
   useEffect(() => {
     getGroup(id).then((group) => {
       setGroup(group);
     });
     searchQuestions("", group._id).then((questions) => setQuestions(questions));
-  }, [group._id, id]);
-
-  const [questions, setQuestions] = useState([]);
-  const [isMember, setIsMember] = useState(
-    group.members && state._id in group.members
-  );
+  }, [group._id, id, addQuestionReducer]);
 
   useEffect(() => {
     setIsMember(group.members && state._id in group.members);

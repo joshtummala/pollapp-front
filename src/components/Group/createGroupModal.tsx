@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import { createGroup } from "../../services/groupService";
+import { useDispatch } from "react-redux";
+import { createGroup, searchGroups } from "../../services/groupService";
 
 const CreateGroupModal = () => {
   const [title, setTitle] = useState("");
   const [topic, setTopic] = useState("");
-
+  const dispatch = useDispatch();
   const onChangeHandler = () => {
-    console.log(title, topic);
     createGroup({ title: title, topic: topic }).then((value) => {
       setTitle("");
       setTopic("");
       console.log(value);
-      // TODO: handle the error?? + not worikng
+      searchGroups().then((groups) => {
+        dispatch({ type: "SET_GROUPS", groups: groups });
+      });
     });
   };
 

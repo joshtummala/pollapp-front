@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchQuestions } from "../../services/questionService";
 import Spinner from "../decorative/spinner";
 import UserInfo from "../Explore/user-info";
@@ -7,14 +7,20 @@ import QuestionList from "../Questions/questionList";
 
 const QuestionsUser = () => {
   const state = useSelector((state: any) => state.userReducer);
-  const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const questions = useSelector((state: any) => state.questionsReducer);
+  const addQuestion = useSelector((state: any) => state.addQuestionReducer);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsLoading(true);
-    searchQuestions().then((questions) => setQuestions(questions))
+    searchQuestions()
+      .then((questions) => {
+        dispatch({ type: "SET_QUESTIONS", questions: questions });
+      })
       .finally(() => setIsLoading(false));
-  }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [addQuestion]);
 
   return (
     <div className="container mt-5">

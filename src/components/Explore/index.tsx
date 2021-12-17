@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import GroupGrid from "./group-grid";
 import UserInfo from "./user-info";
@@ -8,16 +8,17 @@ import Spinner from "../decorative/spinner";
 
 const Explore = () => {
   const state = useSelector((state: any) => state.userReducer);
-  const [groups, setGroups] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
+  const groups = useSelector((state: any) => state.groupsReducer);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsLoading(true);
     searchGroups().then((groups) => {
-      setGroups(groups)
+      dispatch({ type: "SET_GROUPS", groups: groups });
     }).finally(() => setIsLoading(false));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
 
   return (
     <div className="container mt-5">

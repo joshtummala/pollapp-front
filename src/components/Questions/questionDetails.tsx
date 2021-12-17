@@ -20,40 +20,43 @@ const QuestionDetails = () => {
     getQuestion(id).then((question) => {
       setQuestion(question);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const checkUserAnswered = () => user._id && user._id in question.responses;
-  const [isAnswered, setIsAnswered] = useState(checkUserAnswered());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const getPercentages = () => {
     let out = {};
+    let count = 0;
     // @ts-ignore
     question.options.forEach((_, index) => (out[index] = 0));
     for (const user in question.responses) {
       // @ts-ignore
       out[question.responses[user]]++;
+      count++;
+    }
+    for (const value in out) {
+      // @ts-ignore
+      out[value] = Math.round((out[value] / count) * 100);
     }
     return out;
   };
   const [responsePercentages, setResponsePercentages] = useState(
     getPercentages()
   );
+  const [selectedOption, setSelectedOption] = useState(-1);
+  const [isAnswered, setIsAnswered] = useState(selectedOption !== -1);
   useEffect(() => {
-    setIsAnswered(checkUserAnswered());
     setResponsePercentages(getPercentages());
+    // @ts-ignore
+    setSelectedOption(question.responses[user._id]);
+    setIsAnswered(selectedOption !== -1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, question]);
-  const onSelect = (event: any) => {
-    console.log(event)
-    if (event.target.checked) {
-      respondToQuestion(question._id, question.options.indexOf(event.target.id)).then(
-        () => {
-          getQuestion(id).then((question) => {
-            setQuestion(question);
-          });
-        }
-      );
-    }
+  const submit = () => {
+    respondToQuestion(question._id, selectedOption).then(() => {
+      getQuestion(id).then((question) => {
+        setQuestion(question);
+        setIsAnswered(true);
+      });
+    });
   };
   return (
     <div className="container mt-5">
@@ -73,7 +76,7 @@ const QuestionDetails = () => {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>{question.question}</h1>
       </div>
-      <div onChange={onSelect}>
+      <div>
         {question.options.map((option, index) => (
           <QuestionOption
             // @ts-ignore
@@ -81,13 +84,19 @@ const QuestionDetails = () => {
             option={option}
             isAnswered={isAnswered}
             // @ts-ignore
-            isSelected={question.responses[user._id] === index}
-            onSelect={onSelect}
+            isSelected={selectedOption === index}
+            onChange={(event) => {
+              if (event.target.checked) setSelectedOption(index);
+            }}
           />
         ))}
+        <button className="btn btn-primary" onClick={submit}>
+          {" "}
+          Submit{" "}
+        </button>
       </div>
     </div>
   );
 };
 
-export default QuestionDetails
+export default QuestionDetails;
