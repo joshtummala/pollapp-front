@@ -34,7 +34,7 @@ const QuestionDetails = () => {
     }
     for (const value in out) {
       // @ts-ignore
-      out[value] = Math.round((out[value] / count) * 100);
+      out[value] = Math.round((out[value] / count) * 100) || 0;
     }
     return out;
   };
