@@ -22,6 +22,7 @@ const GroupDetails = () => {
   const [isMember, setIsMember] = useState(
     group.members && state._id in group.members
   );
+
   const addQuestionReducer = useSelector(
     (state: any) => state.addQuestionReducer
   );
