@@ -20,6 +20,7 @@ const QuestionDetails = () => {
     getQuestion(id).then((question) => {
       setQuestion(question);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const checkUserAnswered = () => user._id && user._id in question.responses;
