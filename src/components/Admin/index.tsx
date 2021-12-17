@@ -23,7 +23,8 @@ const Admin = () => {
         users,
       })
     );
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
   return (
     <div className="container mt-5">
       <div className="row">

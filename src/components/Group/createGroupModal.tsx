@@ -28,7 +28,7 @@ const CreateGroupModal = () => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="staticBackdropLabel">
-              ceate group
+              create group
             </h5>
             <button
               type="button"

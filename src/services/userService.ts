@@ -35,20 +35,15 @@ export const signUp = async (user: {
   return response.data;
 };
 
-export const logout = (dispatch: any) => {
-  axios
-    .post(
-      `${API_URL}/logout`,
-      {},
-      {
-        withCredentials: true,
-      }
-    )
-    .then((response) => {
-      dispatch({
-        type: "CLEAR_USER",
-      });
-    });
+export const logout = async () => {
+  const response = await axios.post(
+    `${API_URL}/logout`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
 };
 
 export const getUsers = async () => {

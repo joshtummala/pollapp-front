@@ -3,8 +3,12 @@ import { API_URL } from "../consts";
 
 export const searchGroups = async (title?: string, topic?: string) => {
   const response = await axios.get(
-    `${API_URL}/groups/search?${(title && "title=" + title) || ""}&${(topic && "topic=" + topic) || ""
-    }`
+    `${API_URL}/groups/search?${(title && "title=" + title) || ""}&${
+      (topic && "topic=" + topic) || ""
+    }`,
+    {
+      withCredentials: true,
+    }
   );
   return response.data;
 };

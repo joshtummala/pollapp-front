@@ -4,6 +4,7 @@ const usersReducer = (
   state = users,
   action: { type: any; users?: any; user?: any }
 ) => {
+  console.log(action);
   switch (action.type) {
     case "SET_USERS":
       return action.users;
