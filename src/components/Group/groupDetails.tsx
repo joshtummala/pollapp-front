@@ -21,6 +21,7 @@ const GroupDetails = () => {
     getGroup(id).then((group) => {
       setGroup(group);
     });
+    searchQuestions("", group._id).then((questions) => setQuestions(questions));
   }, [])
 
   const [questions, setQuestions] = useState([]);
@@ -29,7 +30,6 @@ const GroupDetails = () => {
   );
 
   useEffect(() => {
-    searchQuestions("", group._id).then((questions) => setQuestions(questions));
     setIsMember(group.members && user._id in group.members);
   }, [group, user]);
 

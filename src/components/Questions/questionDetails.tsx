@@ -15,9 +15,13 @@ const QuestionDetails = () => {
     options: [""],
     _id: "",
   });
-  getQuestion(id).then((question) => {
-    setQuestion(question);
-  });
+
+  useEffect(() => {
+    getQuestion(id).then((question) => {
+      setQuestion(question);
+    });
+  }, [])
+
   const checkUserAnswered = () => user._id && user._id in question.responses;
   const [isAnswered, setIsAnswered] = useState(checkUserAnswered());
   const getPercentages = () => {
@@ -36,7 +40,7 @@ const QuestionDetails = () => {
   useEffect(() => {
     setIsAnswered(checkUserAnswered());
     setResponsePercentages(getPercentages());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, question]);
   const onSelect = (event: any) => {
     console.log(event)
