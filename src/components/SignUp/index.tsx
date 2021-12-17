@@ -73,7 +73,7 @@ const SignUp = () => {
             </label>
             <div className="input-group mb-3">
               <input
-                type="text"
+                type="password"
                 className="form-control"
                 id="signup-password"
                 aria-describedby="basic-addon3"

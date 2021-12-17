@@ -7,6 +7,7 @@ import { login } from "../../services/userService";
 const SignIn = () => {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
+
   let history = useHistory();
   let dispatch = useDispatch();
   const loginButton = () => {
@@ -21,8 +22,10 @@ const SignIn = () => {
         setUsername("");
         setPassword("");
         history.push("/home");
-      });
+      })
+      .catch(() => alert("Incorrect username or password"));
   };
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -54,7 +57,7 @@ const SignIn = () => {
             </label>
             <div className="input-group mb-3">
               <input
-                type="text"
+                type="password"
                 className="form-control"
                 id="signin-password"
                 aria-describedby="basic-addon3"
